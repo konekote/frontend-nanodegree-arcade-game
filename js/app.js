@@ -1,3 +1,6 @@
+var columnPixelSize = 101;
+var rowPixelSize = 83;
+var rowPixelOffset = 20;
 // Enemies our player must avoid
 var Enemy = function(column = 0, row = 0) {
     // Variables applied to each of our instances go here,
@@ -9,11 +12,11 @@ var Enemy = function(column = 0, row = 0) {
 };
 
 Enemy.prototype.getInitialXPosition = function(column) {
-  return column * 101 - 101;
+  return column * columnPixelSize;
 }
 
 Enemy.prototype.getInitialYPosition = function(row) {
-  return row * 83 - 20;
+  return row * rowPixelSize - rowPixelOffset;
 }
 
 Enemy.prototype.getRandomValueForRange = function(min, max) {
@@ -37,7 +40,7 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     this.x = this.x + this.viteza * dt;
     if(this.x > this.XLimit) {
-      this.init(0, this.getRandomValueForRange(1, 4));
+      this.init(-1, this.getRandomValueForRange(1, 4));
     }
 };
 
@@ -50,7 +53,7 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 
-var Player = function(column = 0, row = 0) {
+var Player = function(column = 2, row = 5) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
     this.init(column, row);
@@ -60,11 +63,11 @@ var Player = function(column = 0, row = 0) {
 };
 
 Player.prototype.getInitialXPosition = function(column) {
-  return column * 101;
+  return column * columnPixelSize;
 }
 
 Player.prototype.getInitialYPosition = function(row) {
-  return row * 83 - 20;
+  return row * rowPixelSize - rowPixelOffset;
 }
 
 Player.prototype.init = function (column, row) {
@@ -82,16 +85,16 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput = function(pressedKey) {
-
+  console.log(pressedKey);
 };
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-var allEnemies = [new Enemy(0,1), new Enemy(0,2), new Enemy(0,3)];
+var allEnemies = [new Enemy(-1,1), new Enemy(-1,2), new Enemy(-1,3)];
 
-var player = new Player(2,5);
+var player = new Player();
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
