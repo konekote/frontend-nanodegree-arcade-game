@@ -85,7 +85,22 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput = function(pressedKey) {
-  console.log(pressedKey);
+  switch(pressedKey) {
+    case 'left':
+      this.x = this.x - columnPixelSize;
+      break;
+
+    case 'right':
+      this.x = this.x + columnPixelSize;
+      break;
+
+    case 'up':
+      this.y = this.y - rowPixelSize;
+      break;
+
+    case 'down':
+      this.y = this.y + rowPixelSize;
+    }
 };
 
 // Now instantiate your objects.
