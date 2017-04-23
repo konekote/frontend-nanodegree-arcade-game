@@ -84,22 +84,31 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+
 Player.prototype.handleInput = function(pressedKey) {
   switch(pressedKey) {
     case 'left':
-      this.x = this.x - columnPixelSize;
+      if (this.x > this.getInitialXPosition(0)) {
+        this.x = this.x - columnPixelSize;
+      };
       break;
 
     case 'right':
-      this.x = this.x + columnPixelSize;
+      if (this.x < this.getInitialXPosition(4)) {
+        this.x = this.x + columnPixelSize;
+      };
       break;
 
     case 'up':
-      this.y = this.y - rowPixelSize;
+      if (this.y > this.getInitialYPosition(0)) {
+        this.y = this.y - rowPixelSize;
+      };
       break;
 
     case 'down':
+    if (this.y < this.getInitialYPosition(5)) {
       this.y = this.y + rowPixelSize;
+    };
     }
 };
 
