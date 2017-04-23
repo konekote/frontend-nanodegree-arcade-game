@@ -87,6 +87,9 @@ Player.prototype.checkCollisions = function() {
 Player.prototype.update = function() {
   if (this.checkCollisions()) {
     this.init(2,5);
+  } else if (this.y == this.getInitialYPosition(0)) {
+    this.init(2,5);
+    window.alert("Congratulations! You win!");
   };
 };
 
