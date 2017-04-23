@@ -75,8 +75,19 @@ Player.prototype.init = function (column, row) {
   this.y = this.getInitialYPosition(row);
 }
 
-Player.prototype.update = function() {
+Player.prototype.checkCollisions = function() {
+  for (i = 0; i < allEnemies.length; i++) {
+    if ((this.y == allEnemies[i].y) && (Math.abs(this.x - allEnemies[i].x) <= 55)) {
+      return true;
+    }
+  };
+};
 
+
+Player.prototype.update = function() {
+  if (this.checkCollisions()) {
+    this.init(2,5);
+  };
 };
 
 // Draw the enemy on the screen, required method for game
